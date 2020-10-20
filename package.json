@@ -4,7 +4,7 @@
   "description": "A boilerplate for building a fast static website with the Eleventy static site generator, for deployment to Netlify.",
   "scripts": {
     "build": "npx eleventy",
-    "watch": "npx eleventy --watch",
+    "watch": "npx eleventy --watch --serve",
     "debug": "DEBUG=* npx eleventy"
   },
   "repository": {
@@ -21,16 +21,100 @@
     "url": "https://github.com/danurbanowicz/eleventy-netlify-boilerplate/issues"
   },
   "homepage": "https://github.com/danurbanowicz/eleventy-netlify-boilerplate",
+  "dependencies": {},
   "devDependencies": {
+    "@11ty/eleventy-navigation": "^0.1.6",
     "@11ty/eleventy": "^0.11.0",
+    "eleventy-plugin-babel": "^1.0.0",
+    "eleventy-plugin-sass": "^1.1.1",
+    "eslint": "^7.11.0",
+    "eslint-config-prettier": "^6.13.0",
+    "eslint-config-recommended": "^4.1.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "html-minifier": "^4.0.0",
     "luxon": "^1.25.0",
     "markdown-it": "^10.0.0",
-    "markdown-it-anchor": "^5.3.0"
+    "markdown-it-anchor": "^5.3.0",
+    "prettier": "^2.1.2",
+    "stylelint": "^13.7.2",
+    "stylelint-config-prettier": "^8.0.2",
+    "stylelint-config-recommended-scss": "^4.2.0",
+    "stylelint-prettier": "^1.1.2",
+    "stylelint-scss": "^3.18.0"
   },
-  "dependencies": {
-    "@11ty/eleventy-navigation": "^0.1.6",
-    "clean-css": "^4.2.1",
-    "html-minifier": "^4.0.0",
-    "uglify-es": "^3.3.9"
-  }
+  "stylelint": {
+    "extends": [
+      "stylelint-config-prettier",
+      "stylelint-config-recommended-scss"
+    ],
+    "plugins": [
+      "stylelint-prettier",
+      "stylelint-scss"
+    ],
+    "rules": {
+      "max-nesting-depth": [
+        3,
+        {
+          "ignore": [
+            "blockless-at-rules",
+            "pseudo-classes"
+          ]
+        }
+      ],
+      "prettier/prettier": [
+        true,
+        {
+          "parser": "scss"
+        }
+      ]
+    }
+  },
+  "eslintConfig": {
+    "parserOptions": {
+      "ecmaVersion": 6,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "modules": true
+      }
+    },
+    "plugins": [
+      "eslint-plugin-prettier"
+    ],
+    "extends": [
+      "esnext",
+      "esnext/style-guide",
+      "node",
+      "node/style-guide",
+      "plugin:prettier/recommended"
+    ],
+    "rules": {
+      "prettier/prettier": [
+        1
+      ],
+      "import/no-commonjs": 0
+    },
+    "env": {
+      "browser": true
+    }
+  },
+  "prettier": {
+    "printWidth": 120,
+    "tabWidth": 2,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "bracketSpacing": true,
+    "jsxBracketSameLine": false,
+    "semi": true,
+    "useTabs": false,
+    "arrowParens": "always",
+    "proseWrap": "preserve"
+  },
+  "sass": {
+    "includePaths": [
+      "node_modules"
+    ]
+  },
+  "browserslist": [
+    "defaults"
+  ]
 }
